@@ -1,7 +1,7 @@
 import React, {
     useState
 } from 'react';
-import { View, StyleSheet, TextInput, Button } from 'react-native';
+import { View, StyleSheet, TextInput, Button, Modal } from 'react-native';
 
 
 
@@ -13,27 +13,58 @@ const GoalInput = props => {
 
     }
 
-    return (<View style={styles.inputContainer} >
-        <TextInput placeholder="Course Goal"
-            style={styles.input}
-            onChangeText={goalInputHandler}
-            value={enteredGoal}
-        />
-        <Button title="ADD" onPress={props.onAddGoal.bind(this, enteredGoal)} />
-    </View>);
+    const addGoalHandler = () => {
+        props.onAddGoal(enteredGoal);
+        setEnteredGoal('');
+    };
+
+    return (
+        <Modal visible={props.visible}
+            animationType="slide"
+        >
+            <View style={styles.inputContainer} >
+                <TextInput placeholder="Course Goal"
+                    style={styles.input}
+                    onChangeText={goalInputHandler}
+                    value={enteredGoal}
+                />
+                <View style={styles.inputContainer}>
+                    <View style={styles.button}>
+                        <Button title="CANCEL" color="red" onPress={props.onCancel} />
+                    </View>
+                    <View style={styles.button}>
+                        <Button title="ADD" onPress={addGoalHandler} />
+                    </View>
+
+                </View>
+
+            </View>
+        </Modal>
+
+    );
 };
 
 const styles = StyleSheet.create({
+    button: {
+        width: '40%'
+    },
+
     inputContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
     },
     input: {
         width: '80%',
         borderBottomColor: "black",
         borderBottomWidth: 1,
-        padding: 10
+        padding: 10,
+        marginBottom: 10,
     },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '60%'
+    }
 });
 export default GoalInput;
