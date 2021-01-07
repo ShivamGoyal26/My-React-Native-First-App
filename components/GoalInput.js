@@ -36,7 +36,7 @@ const GoalInput = props => {
                         <Button title="ADD" onPress={addGoalHandler} />
                     </View>
 
-                </View>
+                </View> 
 
             </View>
         </Modal>
