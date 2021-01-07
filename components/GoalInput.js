@@ -28,7 +28,7 @@ const GoalInput = props => {
                     onChangeText={goalInputHandler}
                     value={enteredGoal}
                 />
-                <View style={styles.inputContainer}>
+                <View style={styles.buttonContainer}>
                     <View style={styles.button}>
                         <Button title="CANCEL" color="red" onPress={props.onCancel} />
                     </View>
@@ -46,7 +46,7 @@ const GoalInput = props => {
 
 const styles = StyleSheet.create({
     button: {
-        width: '40%'
+        width: '40%',
     },
 
     inputContainer: {
